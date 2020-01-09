@@ -9,6 +9,8 @@ PACKAGE PKG_READ_SQL AS
 ** Changelog:
 **   Date: 10-02-2019
 **     Initial Release: SQL Conversion to CSV and Flat Text Files
+**   Date: 01-09-2020
+**     v2: SQL Conversion to CSV and Flat Text Files
 ******************************************************************************
 ******************************************************************************
 Copyright (C) 2019 by Jan Magnait
@@ -113,8 +115,8 @@ AS
     BEGIN
       v_ddl_string := ' DECLARE CURSOR c1 IS  ';  
       v_ddl_string := v_ddl_string || P_SQL_QUERY || ' v_file UTL_FILE.file_type; '||
-      ' v_write VARCHAR2(32000); ' || ' BEGIN ';  
-      v_ddl_string := v_ddl_string ||  ' v_file := UTL_FILE.fopen('''|| P_DIR ||''', '''|| P_FILENAME ||''', ''w''); '; 
+      ' v_write VARCHAR2(32000); vMaxLineSize NUMBER := 32700; ' || ' BEGIN ';  
+      v_ddl_string := v_ddl_string ||  ' v_file := UTL_FILE.fopen('''|| P_DIR ||''', '''|| P_FILENAME ||''', ''w'', vMaxLineSize); '; 
       v_ddl_string := v_ddl_string ||  ' pkg_sql_convert.set_format_mask('''||P_DATE_FORMAT||'''); ';
       v_ddl_string := v_ddl_string ||  ' pkg_sql_convert.set_delimeter('''||P_DELIMETER_TYPE||'''); ';
       
@@ -188,10 +190,10 @@ AS
     v_ddl_string := ' DECLARE CURSOR c1 IS  ';  
     v_ddl_string := v_ddl_string || P_SQL_QUERY || 
                     ' v_file UTL_FILE.file_type; '||
-                    ' v_write VARCHAR2(32000); ' || 
+                    ' v_write VARCHAR2(32000); vMaxLineSize NUMBER := 32700; ' || 
                     ' BEGIN ';  
     v_ddl_string := v_ddl_string ||  
-                    ' v_file := UTL_FILE.fopen('''|| P_DIR ||''', '''|| P_FILENAME ||''', ''w''); ';
+                    ' v_file := UTL_FILE.fopen('''|| P_DIR ||''', '''|| P_FILENAME ||''', ''w'', vMaxLineSize); ';
     v_ddl_string := v_ddl_string ||  
                     ' pkg_sql_convert.set_format_mask('''||P_DATE_FORMAT||'''); ';
     v_ddl_string := v_ddl_string ||  
