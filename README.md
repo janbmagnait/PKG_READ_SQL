@@ -1,5 +1,5 @@
 # PKG_READ_SQL
-This Oracle PL/SQL utility package allows backend developers to convert data retrieved from SQL Statement to different file formats such as: .CSV, .DAT, .TXT, and other flat text files. This can be useful for automating data extraction process and of course, it streamlines the IT development process.
+This Oracle PL/SQL utility package allows backend developers to convert data retrieved from SQL Statement to different file formats such as: .CSV, .DAT, .TXT, and other text file formats. This is useful for automating data extraction and tremendously saves time on development process.
 
 # SAMPLE PLSQL CODE TO GENERATE CSV
     BEGIN
